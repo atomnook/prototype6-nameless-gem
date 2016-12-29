@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package protobuf.core;
+
+message StatusEffects {
+  int64 poison = 1;
+  int64 blind = 2;
+  int64 silence = 3;
+  int64 sleep = 4;
+}

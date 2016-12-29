@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package protobuf.skill;
+
+import "core/name.proto";
+
+message NamedArt {
+  core.Name name = 1;
+}

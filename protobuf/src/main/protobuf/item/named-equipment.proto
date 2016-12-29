@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package protobuf.item;
+
+import "core/name.proto";
+
+message NamedEquipment {
+  core.Name name = 1;
+}

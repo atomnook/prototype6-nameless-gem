@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package protobuf.core;
+
+message Attributes {
+  int64 str = 1;
+  int64 vit = 2;
+  int64 int = 3;
+  int64 mnd = 4;
+  int64 dex = 5;
+  int64 agi = 6;
+  int64 hp = 7;
+  int64 mp = 8;
+}

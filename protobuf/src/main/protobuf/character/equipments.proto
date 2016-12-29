@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package protobuf.character;
+
+import "core/verse.proto";
+
+message Equipments {
+  core.Verse head = 1;
+  core.Verse body = 2;
+  core.Verse arm = 3;
+  core.Verse foot = 4;
+  core.Verse primary = 5;
+  core.Verse secondary = 6;
+  core.Verse accessory1 = 7;
+  core.Verse accessory2 = 8;
+  core.Verse accessory3 = 9;
+}
