@@ -1,7 +1,10 @@
+package protobuf
+
 import org.scalacheck.{Arbitrary, Gen}
 import protobuf.core._
+import protobuf.core.implicits._
 
-package object protobuf {
+package object implicits {
   private[this] def listOf[A](implicit a: Arbitrary[A]): Gen[List[A]] = Gen.listOf(a.arbitrary)
 
   private[this] implicit val nameValueArbitrary: Arbitrary[NameValue] = {
