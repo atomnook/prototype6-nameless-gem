@@ -10,6 +10,27 @@ import "item/named-equipment.proto";
 import "skill/named-art.proto";
 import "skill/named-magic.proto";
 
+enum Label {
+  CHARACTER_CLASS_NAME = 0;
+  CHARACTER_CLASS_MODIFIER = 1;
+  ITEM_HEAD_NAME = 2;
+  ITEM_BODY_NAME = 3;
+  ITEM_ARM_NAME = 4;
+  ITEM_FOOT_NAME = 5;
+  ITEM_ACCESSORY_NAME = 6;
+  ITEM_PRIMARY_NAME = 7;
+  ITEM_SECONDARY_NAME = 8;
+  ITEM_MODIFIER = 9;
+  SKILL_ART_NAME = 10;
+  SKILL_MAGIC_NAME = 11;
+  SKILL_MODIFIER = 12;
+}
+
+message NameValue {
+  Label label = 1;
+  core.Name name = 2;
+}
+
 message Database {
   repeated core.NamedAttributes attributes = 2;
 
@@ -23,29 +44,5 @@ message Database {
 
   repeated skill.NamedMagic magics = 22;
 
-  repeated core.Name class_names = 5;
-
-  repeated core.Name class_modifiers = 6;
-
-  repeated core.Name head_names = 7;
-
-  repeated core.Name body_names = 8;
-
-  repeated core.Name arm_names = 9;
-
-  repeated core.Name foot_names = 10;
-
-  repeated core.Name accessory_names = 11;
-
-  repeated core.Name primary_names = 12;
-
-  repeated core.Name secondary_names = 13;
-
-  repeated core.Name equipment_modifiers = 14;
-
-  repeated core.Name art_names = 15;
-
-  repeated core.Name magic_names = 16;
-
-  repeated core.Name skill_modifiers = 17;
+  repeated NameValue names = 23;
 }
