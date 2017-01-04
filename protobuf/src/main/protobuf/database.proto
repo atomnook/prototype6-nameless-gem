@@ -2,6 +2,50 @@ syntax = "proto3";
 
 package protobuf;
 
+import "core/name.proto";
+import "core/named-attributes.proto";
+import "core/named-elements.proto";
+import "core/named-status-effects.proto";
+import "item/named-equipment.proto";
+import "skill/named-art.proto";
+import "skill/named-magic.proto";
+
 message Database {
-  
+  repeated core.NamedAttributes attributes = 2;
+
+  repeated core.NamedElements elements = 3;
+
+  repeated core.NamedStatusEffects status_effects = 4;
+
+  repeated item.NamedEquipment equipments = 20;
+
+  repeated skill.NamedArt arts = 21;
+
+  repeated skill.NamedMagic magics = 22;
+
+  repeated core.Name class_names = 5;
+
+  repeated core.Name class_modifiers = 6;
+
+  repeated core.Name head_names = 7;
+
+  repeated core.Name body_names = 8;
+
+  repeated core.Name arm_names = 9;
+
+  repeated core.Name foot_names = 10;
+
+  repeated core.Name accessory_names = 11;
+
+  repeated core.Name primary_names = 12;
+
+  repeated core.Name secondary_names = 13;
+
+  repeated core.Name equipment_modifiers = 14;
+
+  repeated core.Name art_names = 15;
+
+  repeated core.Name magic_names = 16;
+
+  repeated core.Name skill_modifiers = 17;
 }
