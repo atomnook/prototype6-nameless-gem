@@ -21,3 +21,5 @@ lazy val protobuf = (project in file("protobuf")).settings(defaultSettings, scal
 lazy val domain = (project in file("domain")).
   settings(defaultSettings, scalatestSettings).
   dependsOn(protobuf % "compile->compile;test->test")
+
+lazy val tool = (project in file("tool")).enablePlugins(PlayScala).settings(defaultSettings).dependsOn(domain)
