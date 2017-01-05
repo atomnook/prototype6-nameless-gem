@@ -2,4 +2,5 @@
 domain/target/
 project/target/
 protobuf/target/
+tool/target/
 target/

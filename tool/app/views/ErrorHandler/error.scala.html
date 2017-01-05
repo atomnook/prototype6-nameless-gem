@@ -1,0 +1,9 @@
+@(status: Int, message: String)
+
+@Page.main {
+    <div class="row">
+        <div class="alert alert-danger" role="alert">
+            <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span> @status @message
+        </div>
+    </div>
+}

@@ -1,0 +1,5 @@
+GET / controllers.MainController.index
+
+# Assets
+GET /favicon.ico    controllers.Assets.at(path="/public", file="images/favicon.ico")
+GET /footer.css     controllers.Assets.at(path="/public", file="stylesheets/footer.css")
