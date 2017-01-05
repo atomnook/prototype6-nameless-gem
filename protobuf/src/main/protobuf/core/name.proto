@@ -4,4 +4,14 @@ package protobuf.core;
 
 enum Name {
   NAMELESS = 0;
+
+  UNASPECTED = 1;
+  FIRE = 2;
+  ICE = 3;
+  VOLT = 4;
+  WATER = 5;
+  EARTH = 6;
+  WIND = 7;
+  LIGHT = 8;
+  DARK = 9;
 }

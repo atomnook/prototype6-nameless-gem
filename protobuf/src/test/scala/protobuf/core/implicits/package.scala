@@ -1,9 +1,9 @@
-package protobuf
+package protobuf.core
 
 import org.scalacheck.{Arbitrary, Gen}
 import protobuf.implicits.Stream._
 
-package object core {
+package object implicits {
   private[this] def pos[A](f: Stream[Long] => A): Arbitrary[A] = {
     val positive = Gen.infiniteStream(Gen.chooseNum(0, Int.MaxValue).map(_.toLong))
     Arbitrary(positive.map(f))
