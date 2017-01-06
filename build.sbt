@@ -11,6 +11,14 @@ val scalacheckSettings = libraryDependencies += "org.scalacheck" %% "scalacheck"
 
 val scalatestSettings = libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.1" % "test"
 
+val chromedriver = "webdriver.chrome.driver"
+
+val chromedriverValue = file(sys.props.getOrElse(chromedriver, "chromedriver")).getAbsolutePath
+
+val playScalatestSettings = Seq(
+  javaOptions in Test += s"-D$chromedriver=$chromedriverValue",
+  libraryDependencies += "org.scalatestplus.play" %% "scalatestplus-play" % "1.5.1" % "test")
+
 val protobufSettings = defaultSettings ++ Seq(
   PB.targets in Compile := Seq(
     PB.gens.java -> (sourceManaged in Compile).value,
@@ -22,4 +30,7 @@ lazy val domain = (project in file("domain")).
   settings(defaultSettings, scalatestSettings).
   dependsOn(protobuf % "compile->compile;test->test")
 
-lazy val tool = (project in file("tool")).enablePlugins(PlayScala).settings(defaultSettings).dependsOn(domain)
+lazy val tool = (project in file("tool")).
+  enablePlugins(PlayScala).
+  settings(defaultSettings, playScalatestSettings).
+  dependsOn(domain)
