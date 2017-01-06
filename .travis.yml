@@ -1,5 +1,7 @@
 sudo: false
 
+dist: trusty
+
 # http://www.scala-sbt.org/0.13/docs/Travis-CI-with-sbt.html#%28Experimental%29+Reusing+Ivy+cache
 cache:
   directories:
@@ -22,8 +24,18 @@ scala:
 jdk:
   - oraclejdk8
 
+addons:
+  apt:
+    sources:
+      - google-chrome
+    packages:
+      - google-chrome-stable
+
+before_install:
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+  - wget https://chromedriver.storage.googleapis.com/2.25/chromedriver_linux64.zip
+  - unzip chromedriver_linux64.zip
+
 script:
    - sbt ++$TRAVIS_SCALA_VERSION test:compile test
-
-addons:
-firefox: 41.0
