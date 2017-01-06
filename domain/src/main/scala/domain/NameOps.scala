@@ -10,7 +10,7 @@ import protobuf.{Database, Identity}
 class NameOps[A](database: AtomicReference[Database],
                  f: Database => Seq[A],
                  lens: Lens[Database, Seq[A]])
-                (implicit identity: Identity[A, Name]) extends Ops[A, Name] {
+                (implicit val identity: Identity[A, Name]) extends Ops[A, Name] {
 
   override def list: List[A] = f(database.get()).toList
 

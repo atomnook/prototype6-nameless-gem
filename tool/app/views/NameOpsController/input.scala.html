@@ -1,0 +1,22 @@
+@(fields: List[models.FixedField])
+
+@for(field <- fields) {
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <p>
+            <div class="input-group input-group-sm">
+                <label for="@field.id">@field.label</label>
+                <input id="@field.id" type="number" class="form-control" aria-describedby="@field.id-addon" value="@field.value">
+            </div>
+            </p>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+
+    <script>
+        @field.getter = function() {
+            return parseInt($('#@field.id').val(), 10);
+        };
+    </script>
+}

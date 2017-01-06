@@ -1,0 +1,31 @@
+@(input: Html, json: Html, set: Call)
+
+@Page.main {
+    @input
+
+    <div class="row">
+        <p>
+            <button id="apply" type="button" class="btn btn-success btn-xs">
+                Apply @glyphicon("pencil")
+            </button>
+
+            <script>
+                $('#apply').click(function() {
+                    var url = '@set';
+
+                    var body = @json;
+
+                    fetch(url, {
+                        'method': 'POST',
+                        'headers': {'Content-Type': 'text/json'},
+                        'body': JSON.stringify(body)
+                    }).then(function(res) {
+                        if (res.status / 100 == 2) {
+                            window.location.reload(true);
+                        }
+                    });
+                });
+            </script>
+        </p>
+    </div>
+}

@@ -19,10 +19,15 @@ val playScalatestSettings = Seq(
   javaOptions in Test += s"-D$chromedriver=$chromedriverValue",
   libraryDependencies += "org.scalatestplus.play" %% "scalatestplus-play" % "1.5.1" % "test")
 
-val protobufSettings = defaultSettings ++ Seq(
+val protobufSettings = Seq(
   PB.targets in Compile := Seq(
     PB.gens.java -> (sourceManaged in Compile).value,
     scalapb.gen(javaConversions = true, grpc = false, flatPackage = true) -> (sourceManaged in Compile).value))
+
+val playSettings = routesImport += "binders._"
+
+val protobufUtilSettings = libraryDependencies +=
+  "com.google.protobuf" % "protobuf-java-util" % com.trueaccord.scalapb.compiler.Version.protobufVersion
 
 lazy val protobuf = (project in file("protobuf")).settings(defaultSettings, scalacheckSettings, protobufSettings)
 
@@ -32,5 +37,5 @@ lazy val domain = (project in file("domain")).
 
 lazy val tool = (project in file("tool")).
   enablePlugins(PlayScala).
-  settings(defaultSettings, playScalatestSettings).
-  dependsOn(domain)
+  settings(defaultSettings, protobufUtilSettings, playSettings, playScalatestSettings).
+  dependsOn(domain, protobuf % "test->test")

@@ -1,0 +1,16 @@
+@import protobuf.core._
+
+@(values: List[(Name, List[models.FixedField])], get: Name => Call)
+
+@for((name, fields) <- values) {
+    <tr>
+        <td>
+            <a class="label label-default" href="@get(name)">@name.name @glyphicon("pencil")</a>
+        </td>
+        <td>
+            @for(field <- fields) {
+                <span class="label label-default">@field.label @field.value</span>
+            }
+        </td>
+    </tr>
+}

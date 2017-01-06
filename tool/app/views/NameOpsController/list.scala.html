@@ -1,0 +1,8 @@
+@import protobuf.core._
+
+@(toggle: Html, table: Html)
+
+@Page.main {
+    <div class="row"><p>@toggle</p></div>
+    <div class="row"><p><table class="table table-striped">@table</table></p></div>
+}
