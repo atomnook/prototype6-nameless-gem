@@ -24,7 +24,7 @@ val protobufSettings = Seq(
     PB.gens.java -> (sourceManaged in Compile).value,
     scalapb.gen(javaConversions = true, grpc = false, flatPackage = true) -> (sourceManaged in Compile).value))
 
-val playSettings = routesImport += "binders._"
+val playSettings = routesImport ++= Seq("binders._", "protobuf._", "protobuf.core._")
 
 val protobufUtilSettings = libraryDependencies +=
   "com.google.protobuf" % "protobuf-java-util" % com.trueaccord.scalapb.compiler.Version.protobufVersion

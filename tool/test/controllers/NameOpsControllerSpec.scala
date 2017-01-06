@@ -26,10 +26,6 @@ abstract class NameOpsControllerSpec[A : Arbitrary](implicit identity: Identity[
     def name: Name = identity.id(a)
   }
 
-  private[this] implicit class Url(c: Call) {
-    def absoluteUrl: String = s"http://localhost:$port" + c.url
-  }
-
   list.url must {
     s"toggle names ${browser.name}" in {
       go to list.absoluteUrl
