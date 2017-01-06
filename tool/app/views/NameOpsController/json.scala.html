@@ -1,0 +1,12 @@
+@import protobuf.core._
+
+@(name: Name, key: String, fields: List[models.Field[_]])
+
+{
+    'name': '@name.name',
+    '@key': {
+        @for((field, i) <- fields.zipWithIndex) {
+            '@field.id': @(field.getter)() @if(fields.size - 1 != i) {,}
+        }
+    }
+}

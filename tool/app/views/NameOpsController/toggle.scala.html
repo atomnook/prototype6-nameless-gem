@@ -1,0 +1,45 @@
+@import play.api.mvc.Call
+@import protobuf.core.Name
+
+@(available: List[Name], set: Call, remove: Name => Call)
+
+@for(name <- Name.values) {
+    @if(available.contains(name)) {
+        <button id="@name.name" type="button" class="btn btn-success btn-xs">
+            @name.name @glyphicon("remove-sign")
+        </button>
+
+        <script>
+            $('#@name.name').click(function() {
+                var url = '@remove(name)';
+
+                fetch(url, {'method': 'DELETE'}).then(function(res) {
+                    if (res.status / 100 == 2) {
+                        window.location.reload(true);
+                    }
+                });
+            });
+        </script>
+    } else {
+        <button id="@name.name" type="button" class="btn btn-success btn-xs disabled"  style="cursor: pointer">
+            @name.name @glyphicon("plus-sign")
+        </button>
+
+        <script>
+            $('#@name.name').click(function() {
+                var url = '@set';
+                var body = {'name': '@name.name'};
+
+                fetch(url, {
+                    'method': 'POST',
+                    'headers': {'Content-Type': 'text/json'},
+                    'body': JSON.stringify(body)
+                }).then(function(res) {
+                    if (res.status / 100 == 2) {
+                        window.location.reload(true);
+                    }
+                });
+            });
+        </script>
+    }
+}

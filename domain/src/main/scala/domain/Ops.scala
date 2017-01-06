@@ -1,6 +1,10 @@
 package domain
 
+import protobuf.Identity
+
 trait Ops[A, B] {
+  val identity: Identity[A, B]
+
   def list: List[A]
 
   def get(id: B): Option[A]

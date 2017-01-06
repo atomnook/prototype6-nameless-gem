@@ -1,5 +1,19 @@
-GET / controllers.MainController.index
+GET /                       controllers.MainController.index
+GET /attributes             controllers.AttributesController.list
+GET /attributes/:name       controllers.AttributesController.get(name: protobuf.core.Name)
+GET /elements               controllers.ElementsController.list
+GET /elements/:name         controllers.ElementsController.get(name: protobuf.core.Name)
+GET /status-effects         controllers.StatusEffectsController.list
+GET /status-effects/:name   controllers.StatusEffectsController.get(name: protobuf.core.Name)
+
+POST /attributes        controllers.AttributesController.set
+POST /elements          controllers.ElementsController.set
+POST /status-effects    controllers.StatusEffectsController.set
+
+DELETE /attributes/:name        controllers.AttributesController.delete(name: protobuf.core.Name)
+DELETE /elements/:name          controllers.ElementsController.delete(name: protobuf.core.Name)
+DELETE /status-effects/:name    controllers.StatusEffectsController.delete(name: protobuf.core.Name)
 
 # Assets
 GET /favicon.ico    controllers.Assets.at(path="/public", file="images/favicon.ico")
-GET /footer.css     controllers.Assets.at(path="/public", file="stylesheets/footer.css")
+GET /main.css       controllers.Assets.at(path="/public", file="stylesheets/main.css")
