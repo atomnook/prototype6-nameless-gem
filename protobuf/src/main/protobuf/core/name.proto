@@ -14,4 +14,12 @@ enum Name {
   WIND = 7;
   LIGHT = 8;
   DARK = 9;
+
+  FIGHTER = 10;
+  SORCERER = 11;
+  HUNTER = 12;
+
+  HUMAN = 13;
+  DWARF = 14;
+  ELF = 15;
 }

@@ -9,21 +9,11 @@ import "core/named-status-effects.proto";
 import "item/named-equipment.proto";
 import "skill/named-art.proto";
 import "skill/named-magic.proto";
+import "character/player.proto";
 
 enum Label {
   CHARACTER_CLASS_NAME = 0;
-  CHARACTER_CLASS_MODIFIER = 1;
-  ITEM_HEAD_NAME = 2;
-  ITEM_BODY_NAME = 3;
-  ITEM_ARM_NAME = 4;
-  ITEM_FOOT_NAME = 5;
-  ITEM_ACCESSORY_NAME = 6;
-  ITEM_PRIMARY_NAME = 7;
-  ITEM_SECONDARY_NAME = 8;
-  ITEM_MODIFIER = 9;
-  SKILL_ART_NAME = 10;
-  SKILL_MAGIC_NAME = 11;
-  SKILL_MODIFIER = 12;
+  CHARACTER_RACE_NAME = 13;
 }
 
 message NameValue {
@@ -45,4 +35,6 @@ message Database {
   repeated skill.NamedMagic magics = 22;
 
   repeated NameValue names = 23;
+
+  repeated character.Player players = 24;
 }

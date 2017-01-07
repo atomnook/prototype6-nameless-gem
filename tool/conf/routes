@@ -1,23 +1,28 @@
-GET /                       controllers.MainController.index
-GET /export                 controllers.MainController.export
-GET /attributes             controllers.AttributesController.list
-GET /attributes/:name       controllers.AttributesController.get(name: Name)
-GET /elements               controllers.ElementsController.list
-GET /elements/:name         controllers.ElementsController.get(name: Name)
-GET /status-effects         controllers.StatusEffectsController.list
-GET /status-effects/:name   controllers.StatusEffectsController.get(name: Name)
-GET /names/:label           controllers.NamesController.list(label: Label)
+GET /                         controllers.MainController.index
+GET /export                   controllers.MainController.export
+GET /attributes               controllers.AttributesController.list
+GET /attributes/:name         controllers.AttributesController.get(name: Name)
+GET /elements                 controllers.ElementsController.list
+GET /elements/:name           controllers.ElementsController.get(name: Name)
+GET /status-effects           controllers.StatusEffectsController.list
+GET /status-effects/:name     controllers.StatusEffectsController.get(name: Name)
+GET /names/:label             controllers.NamesController.list(label: Label)
+GET /characters/players       controllers.PlayerController.list
+GET /characters/new-players   controllers.PlayerController.create
 
 POST /attributes            controllers.AttributesController.set
 POST /elements              controllers.ElementsController.set
 POST /status-effects        controllers.StatusEffectsController.set
 POST /names/:label/:name    controllers.NamesController.set(label: Label, name: Name)
+POST /characters/players    controllers.PlayerController.set
 
-DELETE /attributes/:name        controllers.AttributesController.delete(name: Name)
-DELETE /elements/:name          controllers.ElementsController.delete(name: Name)
-DELETE /status-effects/:name    controllers.StatusEffectsController.delete(name: Name)
-DELETE /names/:label/:name      controllers.NamesController.delete(label: Label, name: Name)
+DELETE /attributes/:name          controllers.AttributesController.delete(name: Name)
+DELETE /elements/:name            controllers.ElementsController.delete(name: Name)
+DELETE /status-effects/:name      controllers.StatusEffectsController.delete(name: Name)
+DELETE /names/:label/:name        controllers.NamesController.delete(label: Label, name: Name)
+DELETE /characters/players/:id    controllers.PlayerController.delete(id: PlayerId)
 
 # Assets
 GET /favicon.ico    controllers.Assets.at(path="/public", file="images/favicon.ico")
 GET /main.css       controllers.Assets.at(path="/public", file="stylesheets/main.css")
+GET /icons/:file    controllers.Assets.at(path="/public/images/icons", file)

@@ -1,0 +1,94 @@
+@import protobuf.core._
+
+@(races: List[Name], classes: List[Name])
+
+@thumbnail(name: Name, btn: String, attribute: String) = {
+    @defining(name.name) { s =>
+        <div class="col-md-3">
+            <div class="thumbnail">
+                <a id="thumbnail-link-@s">
+                    <img id="thumbnail-@s" style="height:90px; width:90px" src="/icons/@(s).png" alt="@s">
+                </a>
+                <div class="caption">
+                    <h3>@s</h3>
+                    <p><!-- desc --></p>
+                    <p>
+                        <button id="@attribute-@s" class="btn btn-primary btn-xs disabled @btn" style="cursor: pointer">
+                            @s @glyphicon("ok-sign")
+                        </button>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            $('#@attribute-@s').click(function() {
+                $('.@btn').addClass('disabled');
+                $('#@attribute-@s').removeClass('disabled');
+                player.@attribute = '@s';
+            });
+        </script>
+
+        <script>
+            $('#thumbnail-@s').error(function() {
+                $('#thumbnail-link-@s').attr({
+                    'title': 'welcome contributions',
+                    'href': 'https://github.com/atomnook/nameless-gem/tree/master/tool/public/images/icons'
+                });
+            });
+        </script>
+    }
+}
+
+@Page.main {
+    <script>
+        var player = {};
+    </script>
+
+    <div class="row">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input id="name" type="text" class="form-control">
+        </div>
+    </div>
+
+    <div class="row"><h2>Race</h2></div>
+
+    <div class="row">
+        @for(race <- races) {
+            @thumbnail(race, "btn-race", "race")
+        }
+    </div>
+
+    <div class="row"><h2>Class</h2></div>
+
+    <div class="row">
+        @for(cls <- classes) {
+            @thumbnail(cls, "btn-class", "cls")
+        }
+    </div>
+
+    <div>
+        <p>
+            <button id="new" class="btn btn-xs btn-success">New @glyphicon("plus-sign")</button>
+
+            <script>
+                $('#new').click(function() {
+                    var name = $('#name').val();
+                    var id = name.toLowerCase().replace(' ', '-');
+                    if (player.race && player.cls) {
+                        @Api.jsonPromise(routes.PlayerController.set) {
+                            Object.assign({'id':{'id': id}, 'name': name}, player)
+                        } {
+                            function(res) {
+                              if (res.status / 100 == 2) {
+                                window.location.href = '@routes.PlayerController.list';
+                              }
+                            }
+                        }
+                    }
+                });
+            </script>
+        </p>
+    </div>
+}

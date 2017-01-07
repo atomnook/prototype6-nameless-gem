@@ -12,7 +12,7 @@ class NamesControllerSpec extends ChromeSpec with Control {
 
   "/names" must {
     s"toggle names ${browser.name}" in {
-      unique[Label].take(3).map { label =>
+      val set = unique[Label].take(2).map { label =>
         go to routes.NamesController.list(label).absoluteUrl
 
         val as = unique[Name].take(3)
@@ -30,7 +30,9 @@ class NamesControllerSpec extends ChromeSpec with Control {
         }
 
         (label, as)
-      }.foreach { case (label, as) =>
+      }
+
+      set.toList.foreach { case (label, as) =>
         go to routes.NamesController.list(label).absoluteUrl
 
         val o = ops(label)

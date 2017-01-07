@@ -1,0 +1,7 @@
+@(url: play.api.mvc.Call)(body: Html)(promise: Html)
+
+fetch('@url', {
+    'method': '@url.method',
+    'headers': {'Content-Type': 'text/json'},
+    'body': JSON.stringify(@body)
+}).then(@promise);
