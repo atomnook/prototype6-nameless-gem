@@ -2,10 +2,15 @@ package helper
 
 import org.openqa.selenium.support.ui.{ExpectedConditions, WebDriverWait}
 import org.scalatestplus.play.{OneBrowserPerSuite, OneServerPerSuite}
+import play.api.mvc.Call
 
 import scala.concurrent.duration._
 
 trait Control { this: OneServerPerSuite with OneBrowserPerSuite =>
+  protected[this] implicit class Url(c: Call) {
+    def absoluteUrl: String = s"http://localhost:$port" + c.url
+  }
+
   protected[this] trait Assignment[A] {
     def :=(value: A): Unit
   }

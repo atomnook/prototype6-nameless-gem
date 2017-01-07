@@ -3,7 +3,7 @@ package domain
 import org.scalacheck.Arbitrary
 import org.scalatest.FlatSpec
 import org.scalatest.prop.Checkers
-import protobuf.Identity
+import protobuf.{Identity, Label}
 import protobuf.core.{Name, NamedAttributes, NamedElements, NamedStatusEffects}
 import protobuf.core.implicits._
 import protobuf.arbitrary.unique
@@ -55,4 +55,6 @@ class ServiceSpec extends FlatSpec with Checkers {
   test[NamedElements, Name]("elements", _.elements, (last, data) => data.update(_.name := last.name))
 
   test[NamedStatusEffects, Name]("status effects", _.statusEffects, (last, data) => data.update(_.name := last.name))
+
+  test[Name, Name]("names", _.names(Label.CHARACTER_CLASS_NAME), (last, _) => last)
 }

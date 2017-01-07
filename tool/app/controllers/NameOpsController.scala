@@ -7,7 +7,7 @@ import play.api.mvc.{Action, Call, Controller}
 import protobuf.core.Name
 import views.html
 
-abstract class NameOpsController[A](context: ServiceContext) extends Controller with JsonMappingParser[A] {
+abstract class NameOpsController[A](context: ServiceContext) extends Controller with JsonMappingParser[A] with Api {
   protected[this] type Html = play.twirl.api.HtmlFormat.Appendable
 
   protected[this] val service = Service(context)
@@ -44,8 +44,6 @@ abstract class NameOpsController[A](context: ServiceContext) extends Controller 
         NotFound(html.ErrorHandler.error(status = NOT_FOUND, s"$name not found"))
     }
   }
-
-  private[this] val ok = Ok(Json.obj("status" -> OK))
 
   val set: Action[A] = Action(json) { request =>
     ops.set(request.body)

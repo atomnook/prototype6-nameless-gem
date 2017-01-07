@@ -1,0 +1,37 @@
+@import protobuf.core._
+
+@(available: List[Name], label: protobuf.Label)
+
+@api(url: play.api.mvc.Call) = {
+    fetch('@url', {'method': '@url.method'}).then(function(res) {
+        if (res.status / 100 == 2) {
+            window.location.reload(true);
+        }
+    });
+}
+
+@Page.main {
+    @for(name <- Name.values) {
+        @if(available.contains(name)) {
+            <button id="@name.name" type="button" class="btn btn-success btn-xs">
+                @name.name @glyphicon("remove-sign")
+            </button>
+
+            <script>
+                $('#@name.name').click(function() {
+                    @api(routes.NamesController.delete(label, name))
+                });
+            </script>
+        } else {
+            <button id="@name.name" type="button" class="btn btn-success btn-xs disabled"  style="cursor: pointer">
+                @name.name @glyphicon("plus-sign")
+            </button>
+
+            <script>
+                $('#@name.name').click(function() {
+                    @api(routes.NamesController.set(label, name))
+                });
+            </script>
+        }
+    }
+}

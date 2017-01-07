@@ -7,6 +7,8 @@ package object core {
     }
   }
 
+  implicit val nameIdentity: Identity[Name, Name] = named(x => x)
+
   implicit val namedAttributesIdentity: Identity[NamedAttributes, Name] = named(_.name)
 
   implicit val namedElementsIdentity: Identity[NamedElements, Name] = named(_.name)
