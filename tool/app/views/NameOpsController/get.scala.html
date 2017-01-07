@@ -11,19 +11,7 @@
 
             <script>
                 $('#apply').click(function() {
-                    var url = '@set';
-
-                    var body = @json;
-
-                    fetch(url, {
-                        'method': 'POST',
-                        'headers': {'Content-Type': 'text/json'},
-                        'body': JSON.stringify(body)
-                    }).then(function(res) {
-                        if (res.status / 100 == 2) {
-                            window.location.reload(true);
-                        }
-                    });
+                    @Api.json(set)(json)
                 });
             </script>
         </p>

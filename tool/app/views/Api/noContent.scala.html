@@ -1,0 +1,7 @@
+@(url: play.api.mvc.Call)
+
+fetch('@url', {'method': '@url.method'}).then(function(res) {
+    if (res.status / 100 == 2) {
+        window.location.reload(true);
+    }
+});
