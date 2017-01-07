@@ -11,13 +11,7 @@
 
         <script>
             $('#@name.name').click(function() {
-                var url = '@remove(name)';
-
-                fetch(url, {'method': 'DELETE'}).then(function(res) {
-                    if (res.status / 100 == 2) {
-                        window.location.reload(true);
-                    }
-                });
+                @Api.noContent(remove(name))
             });
         </script>
     } else {
@@ -27,18 +21,7 @@
 
         <script>
             $('#@name.name').click(function() {
-                var url = '@set';
-                var body = {'name': '@name.name'};
-
-                fetch(url, {
-                    'method': 'POST',
-                    'headers': {'Content-Type': 'text/json'},
-                    'body': JSON.stringify(body)
-                }).then(function(res) {
-                    if (res.status / 100 == 2) {
-                        window.location.reload(true);
-                    }
-                });
+                @Api.json(set) {{'name': '@name.name'}}
             });
         </script>
     }

@@ -2,14 +2,6 @@
 
 @(available: List[Name], label: protobuf.Label)
 
-@api(url: play.api.mvc.Call) = {
-    fetch('@url', {'method': '@url.method'}).then(function(res) {
-        if (res.status / 100 == 2) {
-            window.location.reload(true);
-        }
-    });
-}
-
 @Page.main {
     @for(name <- Name.values) {
         @if(available.contains(name)) {
@@ -19,7 +11,7 @@
 
             <script>
                 $('#@name.name').click(function() {
-                    @api(routes.NamesController.delete(label, name))
+                    @Api.noContent(routes.NamesController.delete(label, name))
                 });
             </script>
         } else {
@@ -29,7 +21,7 @@
 
             <script>
                 $('#@name.name').click(function() {
-                    @api(routes.NamesController.set(label, name))
+                    @Api.noContent(routes.NamesController.set(label, name))
                 });
             </script>
         }
