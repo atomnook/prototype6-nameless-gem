@@ -1,14 +1,15 @@
 package domain
 
+import protobuf.character.{Player, PlayerId}
 import protobuf.core.{Name, NamedAttributes, NamedElements, NamedStatusEffects}
 import protobuf.{Identity, Label, NameValue}
 
 case class Service(context: ServiceContext) {
-  def attributes: Ops[NamedAttributes, Name] = NameOps(context, _.attributes, _.attributes)
+  def attributes: Ops[NamedAttributes, Name] = BasicOps(context, _.attributes, _.attributes)
 
-  def elements: Ops[NamedElements, Name] = NameOps(context, _.elements, _.elements)
+  def elements: Ops[NamedElements, Name] = BasicOps(context, _.elements, _.elements)
 
-  def statusEffects: Ops[NamedStatusEffects, Name] = NameOps(context, _.statusEffects, _.statusEffects)
+  def statusEffects: Ops[NamedStatusEffects, Name] = BasicOps(context, _.statusEffects, _.statusEffects)
 
   def names(label: Label): Ops[Name, Name] = {
     new Ops[Name, Name] {
@@ -31,4 +32,6 @@ case class Service(context: ServiceContext) {
       override def delete(id: Name): Unit = modify(id)(x => x)
     }
   }
+
+  def players: Ops[Player, PlayerId] = BasicOps(context, _.players, _.players)
 }

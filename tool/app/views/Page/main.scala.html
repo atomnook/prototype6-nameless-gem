@@ -21,14 +21,14 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-        <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/main.css")">
+        <link rel="stylesheet" type="text/css" href="@routes.Assets.at("/public", "stylesheets/main.css")">
     </head>
     <body>
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="@routes.MainController.index">
-                        <img style="height:20px; width:20px" alt="Brand" src="@routes.Assets.at("images/favicon.ico")">
+                        <img style="height:20px; width:20px" alt="Brand" src="@routes.Assets.at("/public", "images/favicon.ico")">
                     </a>
                 </div>
 
@@ -44,6 +44,7 @@
                                 @dropdownLi(routes.NamesController.list(label), label.name)
                             }
                         }
+                        <li><a href="@routes.PlayerController.list">Players</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a id="export" href="@routes.MainController.export">@glyphicon("download-alt")</a></li>

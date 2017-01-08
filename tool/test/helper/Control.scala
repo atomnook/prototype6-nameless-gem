@@ -30,6 +30,15 @@ trait Control { this: OneServerPerSuite with OneBrowserPerSuite =>
     click on id(q)
   }
 
+  def text(q: String): Assignment[String] = {
+    new Assignment[String] {
+      override def :=(value: String): Unit = {
+        explicitlyWait(q)
+        textField(q).value = value
+      }
+    }
+  }
+
   def number(q: String): Assignment[Long] = {
     new Assignment[Long] {
       override def :=(value: Long): Unit = {

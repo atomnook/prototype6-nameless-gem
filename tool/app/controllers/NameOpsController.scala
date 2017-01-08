@@ -1,18 +1,13 @@
 package controllers
 
-import domain.{Ops, Service, ServiceContext}
+import domain.ServiceContext
 import models.Field
-import play.api.libs.json.Json
-import play.api.mvc.{Action, Call, Controller}
+import play.api.mvc.{Action, Call}
 import protobuf.core.Name
 import views.html
 
-abstract class NameOpsController[A](context: ServiceContext) extends Controller with JsonMappingParser[A] with Api {
+abstract class NameOpsController[A](context: ServiceContext) extends OpsController[A, Name](context) {
   protected[this] type Html = play.twirl.api.HtmlFormat.Appendable
-
-  protected[this] val service = Service(context)
-
-  protected[this] def ops: Ops[A, Name]
 
   protected[this] val getCall: Name => Call
 
@@ -43,15 +38,5 @@ abstract class NameOpsController[A](context: ServiceContext) extends Controller 
       case None =>
         NotFound(html.ErrorHandler.error(status = NOT_FOUND, s"$name not found"))
     }
-  }
-
-  val set: Action[A] = Action(json) { request =>
-    ops.set(request.body)
-    ok
-  }
-
-  def delete(name: Name) = Action { _ =>
-    ops.delete(name)
-    ok
   }
 }
