@@ -7,10 +7,12 @@ import protobuf.core.implicits._
 package object implicits {
   private[this] def listOf[A](implicit a: Arbitrary[A]): Gen[List[A]] = Gen.listOf(a.arbitrary)
 
+  implicit val labelArbitrary: Arbitrary[Label] = Arbitrary(Gen.oneOf(Label.values))
+
   private[this] implicit val nameValueArbitrary: Arbitrary[NameValue] = {
     Arbitrary {
       for {
-        label <- Gen.oneOf(Label.values)
+        label <- labelArbitrary.arbitrary
         name <- nameArbitrary.arbitrary
       } yield NameValue().update(_.label := label, _.name := name)
     }
