@@ -5,16 +5,17 @@ import protobuf.Label
 import protobuf.arbitrary.unique
 import protobuf.core.Name
 import protobuf.core.implicits._
+import protobuf.implicits._
 
 class NamesControllerSpec extends ChromeSpec with Control {
   private[this] def ops(label: Label) = service.names(label)
 
   "/names" must {
     s"toggle names ${browser.name}" in {
-      Label.values.map { label =>
+      unique[Label].take(3).map { label =>
         go to routes.NamesController.list(label).absoluteUrl
 
-        val as = unique[Name, Name].take(3)
+        val as = unique[Name].take(3)
         val o = ops(label)
 
         assert(o.list === Nil)
