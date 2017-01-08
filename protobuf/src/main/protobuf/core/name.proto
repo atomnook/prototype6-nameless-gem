@@ -22,4 +22,20 @@ enum Name {
   HUMAN = 13;
   DWARF = 14;
   ELF = 15;
+
+  SWORD = 16;
+  AXE = 17;
+  ROD = 18;
+  BOW = 19;
+
+  HAT = 20;
+  HELM = 21;
+
+  COAT = 22;
+  ROBE = 23;
+  MAIL = 24;
+
+  GAUNTLET = 25;
+
+  BOOT = 26;
 }

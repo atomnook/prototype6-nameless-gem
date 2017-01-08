@@ -14,6 +14,11 @@ import "character/player.proto";
 enum Label {
   CHARACTER_CLASS_NAME = 0;
   CHARACTER_RACE_NAME = 13;
+  ITEM_PRIMARY_NAME = 14;
+  ITEM_HEAD_NAME = 15;
+  ITEM_BODY_NAME = 16;
+  ITEM_ARM_NAME = 17;
+  ITEM_FOOT_NAME = 18;
 }
 
 message NameValue {
