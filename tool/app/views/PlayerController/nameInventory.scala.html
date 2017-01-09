@@ -3,5 +3,9 @@
 @(admin: NameInventory)
 
 @Page.main {
-    @Page.nameInventory(admin)
+    <div class="row">
+        @Page.nameInventory(admin, "admin") { stack =>
+            console.log('@stack.value.name @stack.amount');
+        }
+    </div>
 }

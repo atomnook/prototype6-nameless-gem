@@ -1,15 +1,19 @@
 @import models._
 
-@(inventory: NameInventory)
+@(inventory: NameInventory, id: String)(f: NameInventory.NameStack => Html)
 
-<div class="row panel panel-default">
-    <div class="panel-body">
+<div class="col-xs-4 panel panel-default">
+    <div class="row panel-body">
         @for(stack <- inventory.stacks) {
-            <div class="col-xs-2">
-                <a href="#" class="thumbnail">
-                    <img style="height:90px; width:90px" src="/icons/@stack.value.name" alt="@stack.value.name">
-                </a>
-            </div>
+            <a id="@id-@stack.value.name" href="#" class="thumbnail">
+                <img style="height:90px; width:90px" src="/icons/@stack.value.name" alt="@stack.value.name">
+            </a>
+
+            <script>
+                $('#@id-@stack.value.name').click(function() {
+                    @f(stack)
+                });
+            </script>
         }
     </div>
 </div>
