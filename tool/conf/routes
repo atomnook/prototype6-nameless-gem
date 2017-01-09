@@ -1,14 +1,15 @@
-GET /                         controllers.MainController.index
-GET /export                   controllers.MainController.export
-GET /attributes               controllers.AttributesController.list
-GET /attributes/:name         controllers.AttributesController.get(name: Name)
-GET /elements                 controllers.ElementsController.list
-GET /elements/:name           controllers.ElementsController.get(name: Name)
-GET /status-effects           controllers.StatusEffectsController.list
-GET /status-effects/:name     controllers.StatusEffectsController.get(name: Name)
-GET /names/:label             controllers.NamesController.list(label: Label)
-GET /characters/players       controllers.PlayerController.list
-GET /characters/new-players   controllers.PlayerController.create
+GET /                                         controllers.MainController.index
+GET /export                                   controllers.MainController.export
+GET /attributes                               controllers.AttributesController.list
+GET /attributes/:name                         controllers.AttributesController.get(name: Name)
+GET /elements                                 controllers.ElementsController.list
+GET /elements/:name                           controllers.ElementsController.get(name: Name)
+GET /status-effects                           controllers.StatusEffectsController.list
+GET /status-effects/:name                     controllers.StatusEffectsController.get(name: Name)
+GET /names/:label                             controllers.NamesController.list(label: Label)
+GET /characters/players                       controllers.PlayerController.list
+GET /characters/new-players                   controllers.PlayerController.create
+GET /characters/players/:id/name-inventory    controllers.PlayerController.nameInventory(id: PlayerId)
 
 POST /attributes            controllers.AttributesController.set
 POST /elements              controllers.ElementsController.set

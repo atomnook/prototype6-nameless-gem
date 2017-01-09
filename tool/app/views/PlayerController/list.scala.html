@@ -15,6 +15,9 @@
                 <td>
                     <span class="label label-default"><small>Race/</small> @value.race.name</span>
                     <span class="label label-default"><small>Class/</small> @value.cls.name</span>
+                    <a class="label label-default" href="@routes.PlayerController.nameInventory(value.getId)">
+                        Name Inventory @glyphicon("pencil")
+                    </a>
                 </td>
             </tr>
         }

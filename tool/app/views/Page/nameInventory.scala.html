@@ -1,0 +1,15 @@
+@import models._
+
+@(inventory: NameInventory)
+
+<div class="row panel panel-default">
+    <div class="panel-body">
+        @for(stack <- inventory.stacks) {
+            <div class="col-xs-2">
+                <a href="#" class="thumbnail">
+                    <img style="height:90px; width:90px" src="/icons/@stack.value.name" alt="@stack.value.name">
+                </a>
+            </div>
+        }
+    </div>
+</div>
